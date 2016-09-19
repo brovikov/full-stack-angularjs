@@ -11,20 +11,26 @@ function CheckerController ($scope) {
   $scope.generateMessage = function () {
     $scope.emptyAlarmMessage = ""
     $scope.message = ""
+    $scope.alertClass = ""
 
     if ($scope.food) {
+      $scope.formValidator = "has-success"
       var arrayOfFood = $scope.food.split(',')
       length = removeEmptyValues(arrayOfFood).length
       console.log(length)
       if (length > 3) {
+            $scope.alertClass = "alert-info"
             $scope.message = "Too much!"
             return
       } 
       if (length <= 3) {
+            $scope.alertClass = "alert-success"
             $scope.message = "Enjoy!"
             return
       } 
     } else {
+      $scope.formValidator = "has-error"
+      $scope.alertClass = 'alert-danger'
       $scope.message = "Please enter data first!"
     }
     
